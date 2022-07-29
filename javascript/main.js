@@ -45,7 +45,7 @@ function toogleMobileMenu (){
 //Aside shopping cart
 
 const btnShoppingCart = document.querySelector('.navbar-shopping-cart');
-const productsCart = document.querySelector('.product-detail');
+const productsCart = document.querySelector('#shoppingCartContainer');
 
 btnShoppingCart.addEventListener('click' , toogleShoppingCart);
 
