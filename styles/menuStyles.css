@@ -359,6 +359,11 @@ aside{
     height: 50px;
 }
 
+.shopping-cart img:hover{
+
+    cursor: pointer;
+}
+
 /* Principal view */
 
 .cards-container{
@@ -382,6 +387,17 @@ aside{
     height: 240px;
     border-radius: 20px;
     object-fit: cover;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+
+.product-card img:hover{
+
+    transform: scale(1.05, 1.05);
+    -webkit-box-shadow: 2px 2px 10px 1px rgba(97,97,97,0.61);
+    -moz-box-shadow: 2px 2px 10px 1px rgba(97,97,97,0.61);
+    box-shadow: 2px 2px 10px 1px rgba(97,97,97,0.61);
+    border-radius: 20px;
 }
 
 .product-card .product-info{
