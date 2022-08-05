@@ -172,6 +172,7 @@ function renderItems (array){
         addToCart.classList.add('count-click');
         addToCart.addEventListener('click', count)
         addToCart.addEventListener('click', renderItemSC);
+
     
         //Integrando elementos
     
@@ -231,21 +232,13 @@ const asideButton = document.querySelector('.count-click');
 asideButton.addEventListener('click', count);
 asideButton.addEventListener('click', renderItemSC);
 const countCart = document.querySelector('.countClick');
-let number = 0;
 
-function count() {
-    
-    number++
-    elementsCart.innerText = number - 1;
-
-}
-count();
 
 //Add to shopping cart - products 
 
 const productsContainer = document.querySelector('.my-order-content');
 
-const listProducts = [];
+let listProducts = [];
 
 listProducts.push({
 
@@ -287,8 +280,6 @@ function renderItemSC (){
     iconClose.classList.add('close');
     iconClose.addEventListener('click', removeElement);
 
-    
-    
     //Integrando elementos
     shoppingCartDiv.appendChild(figureContainer);
     figureContainer.appendChild(imgFigure)
@@ -297,41 +288,71 @@ function renderItemSC (){
     shoppingCartDiv.appendChild(iconClose);
     productsContainer.appendChild(shoppingCartDiv);
     
-    //Variables para añadir y remover elementos
-
-    const numberProducts = number;
-    const productsPrice = products.price;
-    const totalValue = (numberProducts - 1) * productsPrice;
-    const contValueTotal = document.querySelector('#total-value');
-
-    //Añadiendo valor total
-
-    function addTotalPrice(){
-
-        contValueTotal.innerText = '$' + totalValue + ',' + 00 ;
-    }
-
-    addTotalPrice();
-
-    // Removiendo Valor total y cantidad de productos
-
-    function removeElement(){
-            
-        const shoppingCartDiv = document.querySelector('.shopping-cart');
-        productsContainer.removeChild(shoppingCartDiv);
-
-        const restaValueTotal = ((numberProducts - 1) * productsPrice) - productsPrice;
-        contValueTotal.innerText = '$' + restaValueTotal + ',' + 00 ;
-
-        number--
-        elementsCart.innerText = number - 1;
-        
-    }
-
     }
     
 }
 
+    //Variables para añadir y remover elementos
+const contValueTotal = document.querySelector('#total-value');
+
+let valuesFunction = function() {
+
+    let obteniendoValores = Object.values(listProducts);
+    let valor = obteniendoValores[0].price;
+    return valor;
+  
+} 
+
+let priceValue = valuesFunction();
+
+let number = 0;
+
+
+
+    // Añadiendo valores 
+
+    function count() {
+        
+        number++;
+        elementsCart.innerText = number;
+
+        let totalValue = number * priceValue;
+
+        function addPrice() {
+
+            contValueTotal.innerText = '$' + totalValue + ',' + 00 ;
+            console.log('funciona');
+        }
+
+        addPrice();
+        
+    }
+
+
+// Removiendo Valor total y cantidad de productos
+ 
+    function removeElement(){
+
+        const shoppingCartDiv = document.querySelector('.shopping-cart');
+        productsContainer.removeChild(shoppingCartDiv);
+
+        number --
+        elementsCart.innerText = number;
+
+        function restValue() {
+
+            let totalValue = number * priceValue;        
+            let restaValueTotal = (number * priceValue); - priceValue;
+            totalValue = restaValueTotal;
+            contValueTotal.innerText = '$' + totalValue + ',' + 00 ;
+        }
+
+        restValue();
+    }
+
+    
+
+    
 
 
 
